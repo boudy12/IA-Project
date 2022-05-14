@@ -1,0 +1,42 @@
+﻿@model Start.Models.Images
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Upload</h2>
+
+
+@using (Html.BeginForm("Index", "UploadImage", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UploadImages, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username">Add Describtion :</label>
+            <div>@Html.TextBoxFor(model => Model.Description, new { @class = "data" })</div>
+            <div>@Html.ValidationMessageFor(model => model.Description)</div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

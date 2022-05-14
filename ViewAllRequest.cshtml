@@ -1,0 +1,65 @@
+﻿@model Start.ViewModels.PersonRequest
+
+@{
+    ViewBag.Title = "ViewAllRequest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/instaStyle.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+</head>
+
+
+<h2>ViewAllRequest</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            name
+        </th>
+        <th style="padding-left:50px">
+            accept
+        </th>
+        <th style="padding-left:50px">
+            Refuse
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Requests)
+    {
+
+        foreach (var item1 in Model.person)
+        {
+            if (item.SenderId == item1.id)
+            {
+                <tr>
+                    <td style="padding-top:20px">
+                        @Html.DisplayFor(modelItem => item1.Name)
+                    </td>
+
+                    <td>
+                        
+                        <a href="@Url.Action("AcceptRequest", "Requests", new { id = item.id })">
+                            <button id="update-upload" style="border:1px solid black;margin:10px;  background-color: white; color: dodgerblue; font-size: 12px;padding: 5px 40px; border-radius: 4px;">accept</button>
+
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("RefuseRequest", "Requests", new { id = item.id })">
+                            <button id="update-upload" style="border:1px solid black;margin:10px;  background-color: white; color: dodgerblue; font-size: 12px;padding: 5px 40px; border-radius: 4px;">Refuse</button>
+
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        }
+    }
+</table>

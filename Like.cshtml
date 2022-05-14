@@ -1,0 +1,398 @@
+﻿
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/Content/instaStyle.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Create Like And Dislike Rating Page Using Html, CSS And JS</title>
+    <!-- Vue JS -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+
+    <style>
+
+
+
+
+        .container {
+            padding: 20px;
+            width: 1850px;
+            height: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+
+
+
+        .voting {
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+        }
+
+        input {
+            width: 50px;
+            border: none;
+            background: none;
+            color: #919191;
+            font-size: 30px;
+            margin: 0 10px;
+            pointer-events: none;
+        }
+
+        button {
+            color: #fff;
+            background: none;
+            border: none;
+            font-size: 30px;
+            padding: 0 15px;
+            margin: 10px 0;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+
+
+        .box {
+            left: 10px;
+            width: 1000px;
+            background: beige;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+
+
+
+
+            .box textarea {
+                width: 100%;
+                border: none;
+                background: white;
+                padding: 15px;
+                height: 50%;
+                border-radius: 5px;
+                transition: all 0.5s;
+                margin-top: 15px;
+                color: brown;
+                font-family: montserrat;
+            }
+
+        button.btn-box {
+            background: blue;
+            color: #fff;
+            padding: 20px 25px;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 4px;
+            font-size: 10px;
+            border-radius: 5px;
+        }
+
+            button.btn-box:hover {
+                background: #004eff;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="wrapper">
+            <div class="box">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="comment">
+                            <p v-for="items in item" v-text="items"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <textarea type="text" class="input" placeholder="Write Your Comment Here...." v-model="newItem"></textarea>
+                        <button id="btnpub" v-on:click="addItem()" class='btn-box' type="submit">Publish</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="voting">
+            <button id="likebtn">
+                <i class="fa fa-thumbs-up" style="color:black"></i>
+            </button>
+            <input type="number" id="input1" value="0" name="">
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+    //like
+        let likebtn = document.querySelector('#likebtn');
+        let input1 = document.querySelector('#input1');
+
+        likebtn.addEventListener('click', () => {
+            input1.value = parseInt(input1.value) + 1;
+            input1.style.color = "#12ff00";
+        })
+
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $(".btn-box").on('click', function () {
+                $(".comment").addClass("afterText");
+            });
+            $("textarea").on('keyup.enter', function () {
+                $(".comment").addClass("afterText");
+            });
+        });
+
+        new Vue({
+            el: "#wrapper",
+            data: {
+                newItem: '',
+                item: [],
+            },
+            methods: {
+                addItem() {
+                    this.item.push(this.newItem);
+                    this.newItem = "";
+                }
+            }
+
+        });
+    </script>
+</body>
+
+<!-- JavaScript Code start from here -->
+
+
+<style>
+
+
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        outline: none;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+
+    .container {
+        border: 3px solid #303030;
+        padding: 20px;
+        width: 1850px;
+        height: 60px;
+        text-align: center;
+        border-radius: 4px;
+        position: relative;
+        background-color: black;
+    }
+
+    h2 {
+        color: #fff;
+        padding: 20px 0;
+        font-size: 30px;
+    }
+
+
+
+    .voting {
+        position: relative;
+        border: 3px solid #303030;
+        border-radius: 4px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+    }
+
+    input {
+        width: 50px;
+        border: none;
+        background: none;
+        color: #919191;
+        font-size: 30px;
+        margin: 0 10px;
+        pointer-events: none;
+    }
+
+    button {
+        color: #fff;
+        background: none;
+        border: none;
+        font-size: 30px;
+        padding: 0 15px;
+        margin: 10px 0;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+        button:active {
+            color: #004eff;
+            transform: scale(1.2);
+        }
+
+    .box {
+        position: absolute;
+        top: 500px;
+        left: 10px;
+        width: 1850px;
+        margin: 30px auto;
+        background: beige;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .comment {
+        display: block;
+        transition: all 1s;
+    }
+
+    .afterText {
+        min-height: 0px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        padding: 5px 10px
+    }
+
+    .box textarea {
+        width: 100%;
+        border: none;
+        background: black;
+        padding: 15px;
+        height: 50%;
+        border-radius: 5px;
+        transition: all 0.5s;
+        margin-top: 15px;
+        color: #fff;
+        font-family: montserrat;
+    }
+
+    button.btn-box {
+        background: black;
+        color: #fff;
+        padding: 20px 25px;
+        border: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        transition: 1s all;
+        font-size: 10px;
+        border-radius: 5px;
+        margin-top: 30px;
+    }
+
+        button.btn-box:hover {
+            background: #004eff;
+        }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Create Like And Dislike Rating Page Using Html, CSS And JS</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="voting">
+            <button id="likebtn">
+                <i class="fa fa-thumbs-up"></i>
+            </button>
+            <input type="number" id="input1" value="0" name="">
+            <button id="dislikebtn">
+                <i class="fa fa-thumbs-down"></i>
+            </button>
+            <input type="number" id="input2" value="0" name="">
+        </div>
+    </div>
+    <section id="wrapper">
+        <div class="box">
+            <div class="row">
+                <div class="col-6">
+                    <div class="comment">
+                        <p v-for="items in item" v-text="items"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <textarea type="text" class="input" placeholder="Write Your Comment Here...." v-model="newItem"></textarea>
+                    <button v-on:click="addItem()" class='btn-box' type="submit">Publish</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".btn-box").on('click', function () {
+                $(".comment").addClass("afterText");
+            });
+            $("textarea").on('keyup.enter', function () {
+                $(".comment").addClass("afterText");
+            });
+        });
+
+        new Vue({
+            el: "#wrapper",
+            data: {
+                newItem: '',
+                item: [],
+            },
+            methods: {
+                addItem() {
+                    this.item.push(this.newItem);
+                    this.newItem = "";
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>
+
+<!-- JavaScript Code start from here -->
+<script type="text/javascript">
+    let likebtn = document.querySelector('#likebtn');
+    let dislikebtn = document.querySelector('#dislikebtn');
+    let input1 = document.querySelector('#input1');
+    let input2 = document.querySelector('#input2');
+
+    likebtn.addEventListener('click', () => {
+        input1.value = parseInt(input1.value) + 1;
+        input1.style.color = "#12ff00";
+    })
+    dislikebtn.addEventListener('click', () => {
+        input2.value = parseInt(input2.value) + 1;
+        input2.style.color = "#ff0000";
+    })
+</script>
+<!-- Vue JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+<!-- jQuery -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+</body>
+</html>

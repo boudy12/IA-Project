@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Start.Models.person>
+
+@{
+    ViewBag.Title = "ListUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<title>Instagram Clone</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="~/assets/favicon.svg" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="~/Content/instaStyle.css" />
+<script src="~/Scripts/instascript.js" defer></script>
+
+
+@foreach (var item in Model)
+{
+
+    <div class="side-menu__suggestion">
+        <a href="#" class="side-menu__suggestion-avatar">
+            <img src="~/assets/default-user.png" alt="User Picture" />
+        </a>
+        <div class="side-menu__suggestion-info">
+            <a href="#">@Html.DisplayFor(modelItem => item.Name)</a>
+            <span>Followed by user1, user2 and 9 others</span>
+        </div>
+        <button class="side-menu__suggestion-button">Follow</button>
+    </div>
+}
+

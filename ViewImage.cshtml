@@ -1,0 +1,147 @@
+﻿
+@model Start.ViewModels.ImageComments
+@{
+    ViewBag.Title = "ViewImage";
+}
+
+
+
+
+<head>
+    <title>Instagram Clone</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="~/assets/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="~/Content/instaStyle.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js'></script>
+    <!-- jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+
+    <style>
+        .voting {
+            position: relative;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+        }
+
+        p {
+            width: 30.333%;
+            border: none;
+            background: none;
+            color: #919191;
+            font-size: 30px;
+        }
+
+        input {
+            margin: 10px;
+            background-color: white;
+            color: black;
+            border: 2px solid grey;
+            font-size: 16px;
+        }
+
+        .image {
+            padding: 15px;
+            height: 500px;
+            width: 500px
+        }
+
+
+        /* start about-me */
+
+
+
+        .momo {
+            overflow: hidden;
+            float: left;
+            padding: 10px;
+            width: 100%;
+            border-bottom: 1px solid black
+        }
+
+            .momo .icon {
+                width: 50%;
+                height: 50px;
+            }
+
+                .momo .icon img {
+                    width: 50px;
+                    height: 50px;
+                    float: left;
+                    margin-right: 10px;
+                    border-radius: 50px;
+                }
+
+                .momo .icon H2 {
+                    font-size: x-large;
+                    margin-left: 20px;
+                }
+
+            .momo .text {
+                width: 50%;
+                margin: 30px;
+            }
+
+                .momo .text p {
+                    width: 100%;
+                    color: black
+                }
+
+
+
+        /* END about-me */
+
+    </style>
+
+</head>
+
+
+<img src="@Url.Content(Model.images.UploadImages)" class="image" alt="">
+<h3>@Model.images.Description</h3>
+<br />
+
+
+<div class="voting">
+
+    <a href="@Url.Action("NewLike", "AddComment", new { id = Model.images.id })">
+        <i class="fa fa-thumbs-up  fa-3x" style="color:cornflowerblue; width:50px; height:50px"></i>
+
+
+    </a>
+
+    <p>@Model.images.Likes</p>
+    <a href="@Url.Action("NewDisLike", "AddComment", new { id = Model.images.id })">
+
+        <i class="fa fa-thumbs-down  fa-3x" style="color:red; width:50px; height:50px"></i>
+
+    </a>
+
+    <p>@Model.images.DisLikes</p>
+
+    <br>
+
+    <a href="@Url.Action("AddComment", "AddComment", new { id = Model.images.id })">
+        <i style="border:1px solid black; margin:10px; background-color: white; color: dodgerblue; font-size: 12px;padding: 5px 34px; border-radius: 4px;">Add Comment</i>
+    </a>
+    <br>
+</div>
+<h2>Comments...</h2>
+@foreach (var item in Model.comments)
+{
+
+    <div class="momo">
+        <div class="icon">
+            <img src="@Url.Content(Model.images.UploadImages)" alt="">
+            <h2>Boudy</h2>
+        </div>
+        <div class="text">
+            <p>@item.Comments</p>
+        </div>
+    </div>
+
+
+}
+

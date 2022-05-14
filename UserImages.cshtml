@@ -1,0 +1,60 @@
+﻿@using Start.Models;
+@{
+    ViewBag.Title = "UserImages";
+}
+
+
+    <h2>@ViewBag.Person.Name images</h2>
+
+
+    <head>
+        <title>Instagram Clone</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="~/assets/favicon.svg" type="image/x-icon" />
+        <link rel="stylesheet" type="text/css" href="~/Content/instaStyle.css" />
+        <link rel="stylesheet" type="text/css" href="~/Content/Profile.css" />
+        <script src="~/Scripts/instascript.js" defer></script>
+
+        <script src="script.js" defer></script>
+    </head>
+
+
+
+
+
+
+
+    <div class="container">
+
+        <div class="gallery">
+            @foreach (Images item in ViewBag.Images)
+            {
+                <div class="gallery-item" tabindex="0">
+
+                    <img src="@Url.Content(item.UploadImages)" class="gallery-image" alt="">
+
+                    <div class="gallery-item-type">
+
+                        <span class="visually-hidden">Video</span><i class="fas fa-video" aria-hidden="true"></i>
+
+                    </div>
+
+                    <div class="gallery-item-info">
+
+                        <ul>
+                            <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 30</li>
+                            <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
+            }
+        </div>
+
+
+    </div>
